@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifier un film</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        form input[type="text"],
+        form textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        form input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Modifier un film</h1>
+        <form action="{{ url_for('modifier_film', film_id=film.id) }}" method="POST" enctype="multipart/form-data">
+            <label for="titre">Titre :</label>
+            <input type="text" id="titre" name="titre" value="{{ film.titre }}" required>
+
+            <label for="description">Description :</label>
+            <textarea id="description" name="description" required>{{ film.description }}</textarea>
+
+            <label for="annee">Année :</label>
+            <input type="text" id="annee" name="annee" value="{{ film.annee }}" required>
+
+            <label for="acteurs">Acteurs :</label>
+            <input type="text" id="acteurs" name="acteurs" value="{{ film.acteurs }}" required>
+
+            <label for="realisation">Réalisation :</label>
+            <input type="text" id="realisation" name="realisation" value="{{ film.realisation }}" required>
+
+            <label for="producteur">Producteur :</label>
+            <input type="text" id="producteur" name="producteur" value="{{ film.producteur }}" required>
+
+            <label for="image_upload">Image :</label>
+            <input type="file" id="image_upload" name="image_upload">
+
+            <input type="submit" value="Enregistrer les modifications">
+        </form>
+    </div>
+</body>
+</html>

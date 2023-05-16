@@ -11,7 +11,7 @@
             {% for film in films %}
             <div class="film-item">
                 <a href="{{ url_for('film_details', film_id=film.id) }}">
-                    <img src="{{ url_for('serve_file', filename=film.image.lstrip('/')) }}" alt="{{ film.titre }}" class="film-image">
+                    <img src="{{ url_for('serve_file', filename=film.image) }}" alt="{{ film.titre }}" class="film-image">
                     <h2>{{ film.titre }}</h2>
                 </a>
             </div>

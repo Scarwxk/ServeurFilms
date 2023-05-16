@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Détails du film</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+        }
+
+        .film-image {
+            width: 200px;
+            margin-right: 20px;
+        }
+
+        .film-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .film-info {
+            flex-grow: 1;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .film-info h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .film-info p {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .film-actions {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+        }
+
+        .btn-edit:hover,
+        .btn-delete:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function confirmerSuppression() {
+            return confirm("Êtes-vous sûr de vouloir supprimer ce film ?");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="film-image">
+            <img src="{{ url_for('serve_file', filename=film.image.lstrip('/')) }}" alt="{{ film.titre }}">
+        </div>
+        <div class="film-info">
+            <h1>Détails du film</h1>
+            <h2>{{ film.titre }}</h2>
+            <p><strong>Description :</strong> {{ film.description }}</p>
+            <p><strong>Année :</strong> {{ film.annee }}</p>
+            <p><strong>Acteurs :</strong> {{ film.acteurs }}</p>
+            <p><strong>Réalisation :</strong> {{ film.realisation }}</p>
+            <p><strong>Producteur :</strong> {{ film.producteur }}</p>
+            <div class="film-actions">
+                <a href="{{ url_for('modifier_film', film_id=film.id) }}" class="btn-edit">Modifier</a>
+                <form action="{{ url_for('supprimer_film', film_id=film.id) }}" method="POST" onsubmit="return confirmerSuppression();">
+                    <input type="submit" value="Supprimer" class="btn-delete">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
