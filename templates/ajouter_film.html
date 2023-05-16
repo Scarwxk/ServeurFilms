@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter un film</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='form-styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Ajouter un film</h1>
+        <form action="{{ url_for('ajouter_film') }}" method="POST" class="film-form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="titre">Titre :</label>
+                <input type="text" id="titre" name="titre" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description :</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="annee">Année :</label>
+                <input type="number" id="annee" name="annee" required>
+            </div>
+            <div class="form-group">
+                <label for="acteurs">Acteurs :</label>
+                <input type="text" id="acteurs" name="acteurs" required>
+            </div>
+            <div class="form-group">
+                <label for="realisation">Réalisation :</label>
+                <input type="text" id="realisation" name="realisation" required>
+            </div>
+            <div class="form-group">
+                <label for="producteur">Producteur :</label>
+                <input type="text" id="producteur" name="producteur" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Image :</label>
+                <input type="file" id="image" name="image_upload" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-add-film">Ajouter</button>
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>

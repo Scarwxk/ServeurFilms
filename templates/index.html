@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestion des films</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Liste des films</h1>
+        <div class="films-list">
+            {% for film in films %}
+            <div class="film-item">
+                <a href="{{ url_for('film_details', film_id=film.id) }}">
+                    <img src="{{ url_for('serve_file', filename=film.image.lstrip('/')) }}" alt="{{ film.titre }}" class="film-image">
+                    <h2>{{ film.titre }}</h2>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="add-film-button">
+            <a href="{{ url_for('ajouter_film') }}">Ajouter un film</a>
+        </div>
+    </div>
+</body>
+</html>
